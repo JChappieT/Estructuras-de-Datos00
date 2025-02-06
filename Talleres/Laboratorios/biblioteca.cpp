@@ -17,6 +17,14 @@
 using namespace std;
 using namespace chrono;
 
+void iniciVectores(int* v01, int* v02, int* v03, int n){
+	for(int i=0; i < n; i++){
+		v01[i] = rand()%(200);		
+		v02[i] = rand()%(300);		
+		v03[i] = rand()%(400);		
+	}
+}
+
 /******** >>> Funciones y Utilidades a Usar: COMPLEJIDAD <<< ********/
 
 /*** Búsqueda Binaria ***/

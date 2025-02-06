@@ -7,7 +7,6 @@
  * Tópico: Notación Big O
  * *********/
  using namespace std;
-/******** >>> Funciones y Utilidades a Usar: RECURSION <<< ********/
 
 /*Funcion que imprime el vector de cualquier tipo; v < 10 elementos*/ 
 template <class T> void impresionVector(vector<T> &v){
@@ -49,6 +48,8 @@ void resultados(int valor, int indice){
 	else
 		cout << "Valor #-> " << valor << " <-# encontrado en el indice: #-> " << indice << " <-#" << endl; 
 }
+
+
 **/
 /** IMPRESION Encontrado o no **/
 void encontradoBinary(bool resultado);
@@ -67,5 +68,7 @@ void mostrMatrices(int **a, int n);
 void multiMatrices(int **a, int **b, int **c,  int n);
 /*Funcion para eliminar las matrices*/
 void elimnarmatriz(int **a, int **b, int **c, int n);
+/*Funcion para iniciar los vectores*/
+void iniciVectores(int* v01, int* v02, int* v03, int n);
 
 #endif
