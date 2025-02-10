@@ -6,51 +6,22 @@
  * Materia: Estructuras de Datos
  * Tópico: Notación Big O
  * *********/
+#include "biblioteca.cpp"
  using namespace std;
 
 /*Funcion que imprime el vector de cualquier tipo; v < 10 elementos*/ 
-template <class T> void impresionVector(vector<T> &v){
-		if(v.size() <= 20){
-			for(int i=0; i < v.size(); i++)
-				cout << v[i] << " ";
-			cout << "\n";
-		}	
-}
+template <class T> void impresionVector(vector<T> &v);
 /**Funcion para ordenar vector método burbuja**/
-template <class T> void burbujaOrdenar(vector<T>& v){
-	for(int i=0; i<v.size(); i++){
-		for(int j=0; j<v.size()-1; j++){
-			if(v[j]>v[j+1]){
-				swap(v[j], v[j+1]);
-			}
-		}
-	}
-}
+template <class T> void burbujaOrdenar(vector<T>& v);
 /******** >>> Funciones y Utilidades a Usar: COMPLEJIDAD <<< ********/
 /*** Búsqueda Binaria ***/
 bool BinarySearch00(vector<int> v, int valor, int first, int last);
 
-/** Template Busqueda Binaria **/
-/* Los elementos son comparados usando el operador < 
-   Dos elementos a y b son considerados equivalentes sí
-   				(!(a<b) && !(b<a)).
-   */
-template <class iterador, class T> bool BinarySearch01(iterador first, iterador last, const T& valor){
-		first = lower_bound(first, last, valor);
-		return (first!=last && !(valor<*first));
-}
+
+template <class iterador, class T> bool BinarySearch01(iterador first, iterador last, const T& valor);
 
 bool BinarySearch02(vector<int> v, int valor, int first, int last);
-/**Impresion de Resultado Búsqueda**
-void resultados(int valor, int indice){
-	if (indice == -1)
-		cout << "Valor #-> " << valor << " <-# no encontrado" << endl;
-	else
-		cout << "Valor #-> " << valor << " <-# encontrado en el indice: #-> " << indice << " <-#" << endl; 
-}
 
-
-**/
 /** IMPRESION Encontrado o no **/
 void encontradoBinary(bool resultado);
 /******** >>> Funciones y Utilidades a Usar: FICHERO <<< ********/
@@ -68,7 +39,4 @@ void mostrMatrices(int **a, int n);
 void multiMatrices(int **a, int **b, int **c,  int n);
 /*Funcion para eliminar las matrices*/
 void elimnarmatriz(int **a, int **b, int **c, int n);
-/*Funcion para iniciar los vectores*/
-void iniciVectores(int* v01, int* v02, int* v03, int n);
-
 #endif
