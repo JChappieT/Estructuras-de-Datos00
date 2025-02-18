@@ -19,14 +19,6 @@ public:
             std::cerr << "Error: Ambos vectores deben tener exactamente 3 elementos.\n";
         }
     }
-    Punto::Punto(vector<int> c, vector<int> coord) {
-        if (c.size() == 3 && coord.size() == 3) {
-            color = c;
-            coordenadas = coord;
-        } else {
-            std::cerr << "Error: Ambos vectores deben tener exactamente 3 elementos.\n";
-        }
-    }
     ~Punto();
 
     void setColor(int r, int g, int b) {
@@ -46,8 +38,7 @@ public:
     }
 };
 
-class Imagen
-{
+class Imagen{
 private:
     /* data */
     string name;
@@ -109,43 +100,43 @@ public:
 };
 
 class Escena {
-private:
-    /* data */
-    vector<int> limitesSuperiores;
-    vector<int> limitesInferiores;
-    vector<Imagen> imagenes;
-public:
-    Escena() : limitesSuperiores(3, 0), limitesInferiores(3, 0) {}
-    Escena(vector<int> ls, vector<int> li, vector<Imagen> i) {
-        limitesSuperiores = ls;
-        limitesInferiores = li;
-        imagenes = i;
-    }
-    ~Escena();
+    private:
+        /* data */
+        vector<int> limitesSuperiores;
+        vector<int> limitesInferiores;
+        vector<Imagen> imagenes;
+    public:
+        Escena() : limitesSuperiores(3, 0), limitesInferiores(3, 0) {}
+        Escena(vector<int> ls, vector<int> li, vector<Imagen> i) {
+            limitesSuperiores = ls;
+            limitesInferiores = li;
+            imagenes = i;
+        }
+        ~Escena();
 
-    void setLimitesSuperiores(vector<int> ls) {
-        limitesSuperiores = ls;
-    }
+        void setLimitesSuperiores(vector<int> ls) {
+            limitesSuperiores = ls;
+        }
 
-    void setLimitesInferiores(vector<int> li) {
-        limitesInferiores = li;
-    }
+        void setLimitesInferiores(vector<int> li) {
+            limitesInferiores = li;
+        }
 
-    void setImagenes(vector<Imagen> i) {
-        imagenes = i;
-    }
+        void setImagenes(vector<Imagen> i) {
+            imagenes = i;
+        }
 
-    vector<int> getLimitesSuperiores() {
-        return limitesSuperiores;
-    }
+        vector<int> getLimitesSuperiores() {
+            return limitesSuperiores;
+        }
 
-    vector<int> getLimitesInferiores() {
-        return limitesInferiores;
-    }
+        vector<int> getLimitesInferiores() {
+            return limitesInferiores;
+        }
 
-    vector<Imagen> getImagenes() {
-        return imagenes;
-    }
+        vector<Imagen> getImagenes() {
+            return imagenes;
+        }
 
 };
 
