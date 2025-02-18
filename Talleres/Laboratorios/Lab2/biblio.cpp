@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "biblio.h"
 using namespace std;
 
 class Punto{
@@ -11,6 +12,14 @@ public:
     Punto() : color(3, 0), coordenadas(3, 0) {}
         // Constructor con valores específicos
     Punto(vector<int> c, vector<int> coord) {
+        if (c.size() == 3 && coord.size() == 3) {
+            color = c;
+            coordenadas = coord;
+        } else {
+            std::cerr << "Error: Ambos vectores deben tener exactamente 3 elementos.\n";
+        }
+    }
+    Punto::Punto(vector<int> c, vector<int> coord) {
         if (c.size() == 3 && coord.size() == 3) {
             color = c;
             coordenadas = coord;
@@ -47,12 +56,96 @@ private:
     vector<Punto> conjuntoPuntos;
 public:
     Imagen() : centroide(3, 0){}
- Imagen(/* args */);
-     Imagen();
+    Imagen(string n, string i, vector<int> c, vector<Punto> cp) {
+        name = n;
+        indicador = i;
+        centroide = c;
+        conjuntoPuntos = cp;
+    }
+    ~Imagen();
+    
+    void setName(string n) {
+        name = n;
+    }
+
+    void setIndicador(string i) {
+        indicador = i;
+    }
+
+    void setCentroide(vector<Punto> cp) {
+        int x=0,y=0,z=0;
+        for(int i = 0; i < cp.size(); i++){
+            vector<int> coord = cp[i].getCoordenadas();
+            x+=coord[0];
+            y+=coord[1];
+            z+=coord[2];
+        }
+        x/=cp.size();
+        y/=cp.size();
+        z/=cp.size();
+        centroide = {x, y, z};
+    }
+
+    void setConjuntoPuntos(vector<Punto> cp) {
+        conjuntoPuntos = cp;
+    }
+
+    string getName() {
+        return name;
+    }
+
+    string getIndicador() {
+        return indicador;
+    }
+
+    vector<int> getCentroide() {
+        return centroide;
+    }
+
+    vector<Punto> getConjuntoPuntos() {
+        return conjuntoPuntos;
+    }
+    
 };
- Imagen: Imagen(/* args */)
-{
-}
- Imagen:: Imagen()
-{
-}
+
+class Escena {
+private:
+    /* data */
+    vector<int> limitesSuperiores;
+    vector<int> limitesInferiores;
+    vector<Imagen> imagenes;
+public:
+    Escena() : limitesSuperiores(3, 0), limitesInferiores(3, 0) {}
+    Escena(vector<int> ls, vector<int> li, vector<Imagen> i) {
+        limitesSuperiores = ls;
+        limitesInferiores = li;
+        imagenes = i;
+    }
+    ~Escena();
+
+    void setLimitesSuperiores(vector<int> ls) {
+        limitesSuperiores = ls;
+    }
+
+    void setLimitesInferiores(vector<int> li) {
+        limitesInferiores = li;
+    }
+
+    void setImagenes(vector<Imagen> i) {
+        imagenes = i;
+    }
+
+    vector<int> getLimitesSuperiores() {
+        return limitesSuperiores;
+    }
+
+    vector<int> getLimitesInferiores() {
+        return limitesInferiores;
+    }
+
+    vector<Imagen> getImagenes() {
+        return imagenes;
+    }
+
+};
+
