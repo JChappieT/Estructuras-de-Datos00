@@ -138,5 +138,41 @@ class Escena {
             return imagenes;
         }
 
+        void actualizarIndicadorVisua(Imagen ima){
+            vector<Punto> puntos = ima.getConjuntoPuntos();
+            int contador = 0;
+            int contador2 = 0;
+            for(int i = 0; i < puntos.size(); i++){
+                vector<int> coord = puntos[i].getCoordenadas();
+                if(coord[0] > this->limitesSuperiores[0] || coord[0] < this->limitesInferiores[0] 
+                || coord[1] > this->limitesSuperiores[1] || coord[1] < this->limitesInferiores[1] 
+                || coord[2] > this->limitesSuperiores[2] || coord[2] < this->limitesInferiores[2]){
+                    ima.setIndicador("Parcial");
+                }
+                
+                if(coord[0] > this->limitesSuperiores[0] && coord[0] < this->limitesInferiores[0] 
+                    && coord[1] > this->limitesSuperiores[1] && coord[1] < this->limitesInferiores[1] 
+                    && coord[2] > this->limitesSuperiores[2] && coord[2] < this->limitesInferiores[2]){
+                    contador++;
+                }
+
+                if (contador == puntos.size()){
+                    ima.setIndicador("Nula");
+                }
+
+                if(coord[0] <= this->limitesSuperiores[0] && coord[0] >= this->limitesInferiores[0] 
+                    && coord[1] <= this->limitesSuperiores[1] && coord[1] >= this->limitesInferiores[1] 
+                    && coord[2] <= this->limitesSuperiores[2] && coord[2] >= this->limitesInferiores[2]){
+                    contador2++;
+                }
+
+                if (contador2 == puntos.size()){
+                    ima.setIndicador("Completa");
+                }
+                
+            }
+
+        }
+
 };
 
