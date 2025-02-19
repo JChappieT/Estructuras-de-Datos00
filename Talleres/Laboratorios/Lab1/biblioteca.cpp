@@ -17,15 +17,28 @@
 using namespace std;
 using namespace chrono;
 
-void iniciVectores(int* v01, int* v02, int* v03, int n){
-	for(int i=0; i < n; i++){
-		v01[i] = rand()%(200);		
-		v02[i] = rand()%(300);		
-		v03[i] = rand()%(400);		
+template <class T> void impresionVector(vector<T> &v){
+	if(v.size() <= 20){
+		for(int i=0; i < v.size(); i++)
+			cout << v[i] << " ";
+		cout << "\n";
+	}	
+}
+
+template <class T> void burbujaOrdenar(vector<T>& v){
+	for(int i=0; i<v.size(); i++){
+		for(int j=0; j<v.size()-1; j++){
+			if(v[j]>v[j+1]){
+				swap(v[j], v[j+1]);
+			}
+		}
 	}
 }
 
-/******** >>> Funciones y Utilidades a Usar: COMPLEJIDAD <<< ********/
+template <class iterador, class T> bool BinarySearch01(iterador first, iterador last, const T& valor){
+	first = lower_bound(first, last, valor);
+	return (first!=last && !(valor<*first));
+}
 
 /*** Búsqueda Binaria ***/
 bool BinarySearch00(vector<int> v, int valor, int first, int last){
