@@ -8,10 +8,12 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
-#include "biblioteca.cpp"
+
 
 using namespace std;
-
-void imprimirOrdenada(string nombreArchivo);
+//Función que imprime las palabras que contienen la subcadena, la linea en la que aparecen y el numero total de palabras que la contienen
+void imprimirOrdenada(string a);
+//Función que imprime las palabras que contienen la subcadena invertida, la linea en la que aparecen y  el numero total de palabras que la contienen
+void imprimirReversa(string a);
 
 #endif

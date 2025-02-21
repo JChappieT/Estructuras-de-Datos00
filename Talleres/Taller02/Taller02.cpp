@@ -9,19 +9,16 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
 
-    //Se solicita el nombre del archivo
-    cout << "Ingrese el nombre del archivo \n";
-    string nombreArchivo;
-    cin >> nombreArchivo;
-    cout << "Con la Subcadena ordenada: \n";
+    cout << "\nCon la Subcadena ordenada: \n";
     //Se llama a la función imprimirOrdenada
-    imprimirOrdenada(nombreArchivo);
+    imprimirOrdenada(argv[1]);
 
 
-    cout << "Con la Subcadena al reves: \n";
+    cout << "\nCon la Subcadena al reves: \n";
     //Se llama a la función imprimirReversa
-    imprimirReversa(nombreArchivo);
+    imprimirReversa(argv[1]);
+
     return 0;
 }
