@@ -11,8 +11,7 @@
 using namespace std;
 // Destructor
 ArchivoTexto::~ArchivoTexto() {
-    // Limpiar la lista de líneas
-    
+    listaLineas.clear(); // Limpiar la lista de líneas
 }
 //Funcion  que le asigna un valor al dato nombreArchivo
 void ArchivoTexto::setNombreArchivo(string nombreArchivo){
@@ -96,11 +95,11 @@ void ColaP::llenarCola(){
     int numeroLinea=0;
     string palabra;
     
-    for(const auto& linea : archivoTexto.getListaLineas()) {
-        numeroLinea++;
+    for(const auto& linea : archivoTexto.getListaLineas()) { //Recorrer la lista que contiene las líneas del archivo
+        numeroLinea++; //Contador de la linea en la que se encuentra la palabra
         istringstream streamLinea(linea);
         while (streamLinea >> palabra) { // Extraer palabras de la línea
-            this->colaPalabras.push({palabra, numeroLinea});     
+            this->colaPalabras.push({palabra, numeroLinea}); // Guardar palabra y número de línea dentro de la cola
         }
     }
     
@@ -111,16 +110,16 @@ void ColaP::imprimirOrdenada(){
     int numeroLinea;
     int cantidadP=0;
     // Buscar en la pila (orden inverso de lectura)
-    while (!colaPalabras.empty()) {
-        auto [palabra, numeroLinea] = colaPalabras.front();
+    while (!colaPalabras.empty()) { //Recorre la cola hasta que esté vacía
+        auto [palabra, numeroLinea] = colaPalabras.front(); //Extraer palabra y número de línea de la cola
         colaPalabras.pop();
 
         if (palabra.find(archivoTexto.getSubcadena()) != string::npos) {
             cantidadP++; //Contador de numero de palabras que contienen la subcadena invertida
-            cout << palabra << " Linea: " << numeroLinea+2 << endl;
+            cout << palabra << " Linea: " << numeroLinea+2 << endl; //Imprimir palabra y número de línea en la que se encuentra
         }
     }
-    cout << "Numero de palabras que contienen la subcadena ordenada en el archivo: " << cantidadP <<endl;
+    cout << "Numero de palabras que contienen la subcadena ordenada en el archivo: " << cantidadP <<endl; //Imprimir el número de palabras que contienen la subcadena
 }
 //Función que imprime las palabras que contienen la subcadena invertida, la linea en la que aparecen y  el numero total de palabras que la contienen
 void ColaP::imprimirInvertida(){
@@ -128,8 +127,8 @@ void ColaP::imprimirInvertida(){
     int numeroLinea;
     int cantidadP=0;
     // Buscar en la pila (orden inverso de lectura)
-    while (!colaPalabras.empty()) {
-        auto [palabra, numeroLinea] = colaPalabras.front();
+    while (!colaPalabras.empty()) { //Recorrer la cola hasta que esté vacía
+        auto [palabra, numeroLinea] = colaPalabras.front(); //Extraer palabra y número de línea de de la cola
         colaPalabras.pop();
 
         if (palabra.find(invSubcadena) != string::npos) {
@@ -139,9 +138,10 @@ void ColaP::imprimirInvertida(){
     }
     cout << "Numero de palabras que contienen la subcadena invertida en el archivo: " << cantidadP <<endl;
 }
-
+//Función que invierte la subcadena
 void ColaP::invertirSubcadena(){
     invSubcadena = archivoTexto.getSubcadena();
     reverse(invSubcadena.begin(), invSubcadena.end());
+    //Settear la subcadena invertida
     this->setInvSubcadena(invSubcadena);
 }

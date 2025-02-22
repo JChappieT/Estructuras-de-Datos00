@@ -15,17 +15,15 @@ int main(int argc, char* argv[]) {
         cerr << "Error en los argumentos.\n";
         return 1;
     }
-    ColaP colaP;
-    ArchivoTexto archivoTexto;
-    archivoTexto.setNombreArchivo(argv[1]);
-    archivoTexto.leerArchivo();
-    for (const auto& linea : archivoTexto.getListaLineas()) {
-        cout << linea << endl;
-    };
     
-    colaP.setArchivoTexto(archivoTexto);
-    cout << "\nNombre de archivo: \n" << colaP.getArchivoTexto().getNombreArchivo() << endl;
-    colaP.llenarCola();
+    ColaP colaP; //Creación de un objeto de la clase ColaP
+    ArchivoTexto archivoTexto; //Cración de un objeto de la clase ArchivoTexto
+    archivoTexto.setNombreArchivo(argv[1]); //Asignación del nombre del archivo a leer
+    archivoTexto.leerArchivo(); //Lectura del archivo y guardado de las líneas en la lista de líneas y la subcadena en el dato subcadena
+    
+    colaP.setArchivoTexto(archivoTexto); //Asignación del objeto archivoTexto al objeto colaP
+    colaP.llenarCola(); //Llenado de la cola con las palabras del archivo y la linea en la que aparecen
+    
     cout << "\nCon la Subcadena |" << colaP.getArchivoTexto().getSubcadena() << "| ordenada: \n";
     //Se llama a la función imprimirOrdenada
     colaP.imprimirOrdenada();

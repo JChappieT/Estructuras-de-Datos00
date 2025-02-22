@@ -14,9 +14,9 @@ using namespace std;
 
 class ArchivoTexto{
     private:
-        string nombreArchivo;
-        string subcadena;
-        list<string> listaLineas;
+        string nombreArchivo; // Nombre del archivo ejem "entrada1.txt"
+        string subcadena; // Subcadena a buscar en el archivo
+        list<string> listaLineas; // Lista de las líneas del archivo
     public:
         // Destructor
         ~ArchivoTexto();
@@ -38,9 +38,9 @@ class ArchivoTexto{
 
     class ColaP{
         private:
-            queue<pair<string, int>> colaPalabras;  // Cola para mantener el orden de lectura
-            ArchivoTexto archivoTexto; // Objeto de la clase ArchivoTexto con todo el texto del archivo
-            string invSubcadena;
+            queue<pair<string, int>> colaPalabras;  // Cola para guardar las palabras y la linea en la que aparecen
+            ArchivoTexto archivoTexto; // Objeto de la clase ArchivoTexto con todo el texto del archivo y su subcadena
+            string invSubcadena; // Variable en la que se guarda la subcadena invertida
         public:
             // Destructor
             ~ColaP();
