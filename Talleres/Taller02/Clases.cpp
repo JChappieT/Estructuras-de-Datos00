@@ -1,3 +1,11 @@
+/********************************************************
+ Fecha: 22 de febrero de 2025
+ Autores: Santiago Mesa y Jeronimo Chaparro Tenorio.
+ Materia: Estructura de Datos.
+ Tema: Taller 2
+ Pontificia Universidad Javeriana
+ Archivo: Clases.cpp
+ ********************************************************/
 #include <iostream>
 #include <stack>
 #include <queue>
