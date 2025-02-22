@@ -5,20 +5,36 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
-#include "biblioteca.h"
+#include "Clases.h"
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
 
-    cout << "\nCon la Subcadena ordenada: \n";
+    if (argc != 2) {
+        cerr << "Error en los argumentos.\n";
+        return 1;
+    }
+    ColaP colaP;
+    ArchivoTexto archivoTexto;
+    archivoTexto.setNombreArchivo(argv[1]);
+    archivoTexto.leerArchivo();
+    for (const auto& linea : archivoTexto.getListaLineas()) {
+        cout << linea << endl;
+    };
+    
+    colaP.setArchivoTexto(archivoTexto);
+    cout << "\nNombre de archivo: \n" << colaP.getArchivoTexto().getNombreArchivo() << endl;
+    colaP.llenarCola();
+    cout << "\nCon la Subcadena |" << colaP.getArchivoTexto().getSubcadena() << "| ordenada: \n";
     //Se llama a la función imprimirOrdenada
-    imprimirOrdenada(argv[1]);
+    colaP.imprimirOrdenada();
 
-
-    cout << "\nCon la Subcadena al reves: \n";
+    colaP.llenarCola();
+    colaP.invertirSubcadena();
+    cout << "\nCon la Subcadena |" << colaP.getInvSubcadena() << "| invertida: \n";
     //Se llama a la función imprimirReversa
-    imprimirReversa(argv[1]);
-
+    colaP.imprimirInvertida();
+    
     return 0;
 }
