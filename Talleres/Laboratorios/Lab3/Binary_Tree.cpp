@@ -1,3 +1,11 @@
+/********************************************************
+ Fecha: 04 de marzo de 2025
+ Autores: Jeronimo Chaparro Tenorio.
+ Materia: Estructura de Datos.
+ Tema: Arboles binarios
+ Pontificia Universidad Javeriana
+ Archivo: Binary_Tree.cpp
+ ********************************************************/
 #include <iostream>
 #include "Binary_Tree.h"
 using namespace std;
@@ -96,8 +104,8 @@ void btree::postorder_print(){
 
 void btree::postorder_print(node *leaf){
 	if(leaf != NULL){
-		inorder_print(leaf->left);
-		inorder_print(leaf->right);
+		postorder_print(leaf->left);
+		postorder_print(leaf->right);
 		cout << leaf->value << ",";
 	}
 }
@@ -110,8 +118,8 @@ void btree::preorder_print(){
 void btree::preorder_print(node *leaf){
 	if(leaf != NULL){
 		cout << leaf->value << ",";
-		inorder_print(leaf->left);
-		inorder_print(leaf->right);
+		preorder_print(leaf->left);
+		preorder_print(leaf->right);
 	}
 }
 

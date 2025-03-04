@@ -1,10 +1,11 @@
-/************************************************
- * PROYECTO 1
- * FECHA: 01-03-2025
- * MATERIA: ESTRUCTURAS DE DATOS
- * AUTORES: SANTIAGO MESA Y JERONIMO CHAPARRO
- * ARCHIVO: CLASES.H
- ***********************************************/
+/********************************************************
+ Fecha: 04 de marzo de 2025
+ Autores: Jeronimo Chaparro Tenorio.
+ Materia: Estructura de Datos.
+ Tema: Arboles binarios
+ Pontificia Universidad Javeriana
+ Archivo: Binary_Tree.h
+ ********************************************************/
 #ifndef BINARY_TREE_H
 #define BINARY_TREE_H
 #include <iostream>
