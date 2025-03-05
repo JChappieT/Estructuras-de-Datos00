@@ -25,7 +25,7 @@ void btree::destroy_tree(node *leaf){
 		delete leaf;
 	}
 }
-
+/**Función para insertar un valor en el arbol binario**/
 void btree::insert(int key, node *leaf){
 
 	if(key < leaf->value){
@@ -49,7 +49,7 @@ void btree::insert(int key, node *leaf){
 	}
 
 }
-
+/**Función para insertar un valor en el arbol binario**/
 void btree::insert(int key){
 	if(root != NULL){
 		insert(key, root);
@@ -60,7 +60,7 @@ void btree::insert(int key){
 		root->right = NULL;
 	}
 }
-
+/**Función para la busqueda de un valor en el arbol binario**/
 node *btree::search(int key, node *leaf){
 	if(leaf != NULL){
 		if(key == leaf->value){
@@ -75,7 +75,7 @@ node *btree::search(int key, node *leaf){
 		return NULL;
 	}
 }
-
+/**Función para la busqueda de un valor en el arbol binario**/
 node *btree::search(int key){
 	return search(key, root);
 }
@@ -83,12 +83,12 @@ node *btree::search(int key){
 void btree::destroy_tree(){
 	destroy_tree(root);
 }
-
+/**Función que imprime el orden del árbol binario en orden: LDR **/
 void btree::inorder_print(){
 	inorder_print(root);
 	cout << "\n";
 }
-
+/**Función sobre cargada que imprime el orden del árbol binario en orden: LDR, a partir de un apuntador a un nodo **/
 void btree::inorder_print(node *leaf){
 	if(leaf != NULL){
 		inorder_print(leaf->left);
@@ -96,12 +96,12 @@ void btree::inorder_print(node *leaf){
 		inorder_print(leaf->right);
 	}
 }
-
+/**Función que imprime el orden del árbol binario en orden: LRD **/
 void btree::postorder_print(){
 	postorder_print(root);
 	cout << "\n";
 }
-
+/**Función sobre cargada que imprime el orden del árbol binario en orden: LRD, a partir de un apuntador a un nodo **/
 void btree::postorder_print(node *leaf){
 	if(leaf != NULL){
 		postorder_print(leaf->left);
@@ -109,12 +109,12 @@ void btree::postorder_print(node *leaf){
 		cout << leaf->value << ",";
 	}
 }
-
+/**Función que imprime el orden del árbol binario en orden: DLR **/
 void btree::preorder_print(){
 	preorder_print(root);
 	cout << "\n";
 }
-
+/**Función sobre cargada que imprime el orden del árbol binario en orden: DLR, a partir de un apuntador a un nodo **/
 void btree::preorder_print(node *leaf){
 	if(leaf != NULL){
 		cout << leaf->value << ",";
