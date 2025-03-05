@@ -1,1 +1,3 @@
 Repositorio -> https://github.com/JChappieT/Estructuras-de-Datos00
+Para compilar poner el comando "g++ Binary_Tree.cpp main.cpp -o proceso"
+despues poner "./proceso" para ejecutar el programa compilado
