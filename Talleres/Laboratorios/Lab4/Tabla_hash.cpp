@@ -1,6 +1,7 @@
 #include "Tabla_hash.h"
+using namespace std;
 //creating the hash table with the given table size
-HashMapTable::HashMapTable(intts){
+HashMapTable::HashMapTable(int ts){
     this->table_size = ts;
     table = new list<int>[table_size];
 }
@@ -24,12 +25,12 @@ void HashMapTable::deleteElement(int key){
     }
 // display function to showcase the whole hash table
 void HashMapTable::displayHashTable() {
-    for (inti = 0; i<table_size; i++) {
-    cout<<i;
+    for (int i = 0; i<  table_size; i++) {
+        cout << i;
         // traversing at the recent/ current index
         for (auto j : table[i]){
             cout<< " ==> " << j;
-            cout<<endl;
+            cout << endl;
         }
     }
 }
