@@ -1,6 +1,6 @@
 /********************************************************
  Fecha: 18 de marzo de 2025
- Autores: Jeronimo Chaparro Tenorio.
+
  Materia: Estructura de Datos.
  Tema: Arboles AVL
  Pontificia Universidad Javeriana
