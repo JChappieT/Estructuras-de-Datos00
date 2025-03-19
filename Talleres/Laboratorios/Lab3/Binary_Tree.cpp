@@ -123,3 +123,40 @@ void btree::preorder_print(node *leaf){
 	}
 }
 
+void btree::remove(int key) {
+    root = removeUtility(root, key);
+}
+
+node* btree::removeUtility(node* leaf, int key) {
+    if (leaf == nullptr) return nullptr; // Árbol vacío o nodo no encontrado
+
+    if (key < leaf->value) {
+        leaf->left = removeUtility(leaf->left, key); // Buscar en el subárbol izquierdo
+    } else if (key > leaf->value) {
+        leaf->right = removeUtility(leaf->right, key); // Buscar en el subárbol derecho
+    } else {
+        // Caso 1: Nodo hoja
+        if (leaf->left == nullptr && leaf->right == nullptr) {
+            delete leaf;
+            return nullptr;
+        }
+        // Caso 2: Nodo con un solo hijo
+        else if (leaf->left == nullptr) {
+            node* temp = leaf->right;
+            delete leaf;
+            return temp;
+        } else if (leaf->right == nullptr) {
+            node* temp = leaf->left;
+            delete leaf;
+            return temp;
+        }
+        // Caso 3: Nodo con dos hijos
+        else {
+            node* minRight = leaf->right;
+            while (minRight->left != nullptr) minRight = minRight->left; // Encontrar el mínimo en el subárbol derecho
+            leaf->value = minRight->value; // Reemplazar el valor
+            leaf->right = removeUtility(leaf->right, minRight->value); // Eliminar el duplicado
+        }
+    }
+    return leaf;
+}

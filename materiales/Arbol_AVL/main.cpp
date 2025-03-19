@@ -12,42 +12,30 @@ using namespace std;
 
 int main(){
     AVL<int> avl;
-    avl.insert(9);
-    avl.insert(5);
-    avl.insert(10);
-    avl.insert(0);
-    avl.insert(6);
-    avl.insert(11);
-    avl.insert(-1);
-    avl.insert(1);
     avl.insert(2);
-    /* AVL Tree will be
-         9
-        / \
-        1 10
-       / \ \
-       0 5 11
-      / / \
-    -1  2 6
-    */
+    avl.insert(3);
+    avl.insert(10);
+    avl.insert(19);
+    avl.insert(1);
+    avl.insert(40);
+    avl.insert(23);
+    avl.insert(54);
+    avl.insert(53);
+    avl.insert(48);
+    avl.insert(32);
+    avl.insert(35);
+    
 
-    cout << "Traversal of the AVL tree is " << endl;
-    avl.preOrder();
+    cout << "Arbol in Order " << endl;
+    avl.inorder();
+    cout << "Transversal " << endl;
     avl.levelOrder();
-    avl.remove(10);
+    avl.remove(2);
+    avl.remove(32);
 
-    /* After Deletion of 10
-         1
-        / \
-        0 9
-       / / \
-      -1 5 11
-      / \
-      2 6
-    */
-
-    cout << "\nTraversal after deletion of 10" << endl;
-    avl.preOrder();
+    cout << "\nArbol in order despues de eliminar 2 y 32" << endl;
+    avl.inorder();
+    cout << "Transversal " << endl;
     avl.levelOrder();
     return 0;
 }

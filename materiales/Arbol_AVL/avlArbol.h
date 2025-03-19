@@ -207,71 +207,66 @@ public:
 
  //to remove node from the AVL Tree with balanced result
  template<typename T>
- typename AVL<T>::node* AVL<T>::removeUtility(node* current, T value) {
-     //if AVL Tree is empty
-     if (current == NULL) {
-         cout << "Tree is Empty" << endl;
-         return NULL;
-     }
-     //if AVL Tree is not empty
-     if (value < current->data) current->left = removeUtility(current->left, value); //go to the last left
-     else if (value > current->data) current->right = removeUtility(current->right, value); //go to the last right
-         //After finding the value
-     else {
-         //if the is leaf
-         if (current->left == NULL && current->right == NULL) {
-             delete current;
-             current = NULL;
-         }
-             //if the node has 2 childs
-         else if (current->left != NULL && current->right != NULL) {
-             int max = maxUtility(current->left);
-             current->data = max;
-             removeUtility(current->left,max);
-         }
-             //if the node has only child
-         else {
-             node* child=current;
-             if (current->right != NULL) {
-                 current = current->right;
-             }
-             else {
-                 current = current->left;
-             }
-             child->left = NULL;
-             child->right = NULL;
-             delete child;
-             child = NULL;
-         }
-     }
-     current->height = 1 + max(height(current->left), height(current->right));//recalculate height of new node
-     int balance = height(current->left) - height(current->right);//calculate balance with defference between left and right hand sides
-     //if not balanced in the left side
-     if (balance > 1) {
-         // Left Left Case
-         if (height(current->left) >= height(current->right)) {
-             return rightRotation(current);
-         }
-             // Left Right Case
-         else {
-             current->left = leftRotation(current->left);
-             return rightRotation(current);
-         }
-     }
-         //if not balanced in the right side
-     else if (balance < -1) {
-         // Right Right Case
-         if (height(current->right) >= height(current->left)) {
-             return leftRotation(current);
-         }
-             // Right Left Case
-         else {
-             current->right = rightRotation(current->right);
-             return leftRotation(current);
-         }
-     }
-     return current;
- }
+typename AVL<T>::node* AVL<T>::removeUtility(node* current, T value) {
+    if (current == NULL) {
+        cout << "Tree is Empty" << endl;
+        return NULL;
+    }
+
+    if (value < current->data) {
+        current->left = removeUtility(current->left, value);
+    } else if (value > current->data) {
+        current->right = removeUtility(current->right, value);
+    } else {
+        // Caso 1: Nodo hoja
+        if (current->left == NULL && current->right == NULL) {
+            delete current;
+            return NULL;
+        }
+        // Caso 2: Nodo con un solo hijo
+        else if (current->left == NULL) {
+            node* temp = current->right;
+            delete current;
+            return temp;
+        } else if (current->right == NULL) {
+            node* temp = current->left;
+            delete current;
+            return temp;
+        }
+        // Caso 3: Nodo con dos hijos
+        else {
+            int max = maxUtility(current->left);
+            current->data = max;
+            current->left = removeUtility(current->left, max);
+        }
+    }
+
+    // Recalcular la altura del nodo
+    current->height = 1 + max(height(current->left), height(current->right));
+
+    // Verificar el balance del árbol
+    int balance = height(current->left) - height(current->right);
+
+    // Rotaciones para balancear el árbol
+    if (balance > 1) {
+        if (height(current->left->left) >= height(current->left->right)) {
+            return rightRotation(current);
+        } else {
+            current->left = leftRotation(current->left);
+            return rightRotation(current);
+        }
+    } else if (balance < -1) {
+        if (height(current->right->right) >= height(current->right->left)) {
+            return leftRotation(current);
+        } else {
+            current->right = rightRotation(current->right);
+            return leftRotation(current);
+        }
+    }
+
+    return current;
+}
+
 
  //display bt level order .. level by level
  template<typename T>

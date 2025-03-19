@@ -30,6 +30,7 @@ public:
 	void inorder_print();
 	void postorder_print();
 	void preorder_print();
+	void remove(int key);
 
 private:
 	void destroy_tree(node *leaf);
@@ -38,6 +39,7 @@ private:
 	void inorder_print(node *leaf);
 	void postorder_print(node *leaf);
 	void preorder_print(node *leaf);
+	node* removeUtility(node* leaf, int key);
 
 	node *root;
 };
