@@ -1,5 +1,5 @@
 /********************************************************
- Fecha: 04 de marzo de 2025
+ Fecha: 19 de marzo de 2025
  Autores: Jeronimo Chaparro Tenorio.
  Materia: Estructura de Datos.
  Tema: Arboles binarios
