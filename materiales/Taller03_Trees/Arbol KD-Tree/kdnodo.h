@@ -1,13 +1,13 @@
 #ifndef __KDNODO__H__
 #define __KDNODO__H__
-
+#include <vector>
 using namespace std;
 
-template< class T >
+template<class T>
 class kdnodo
 {
   protected:
-    vector < T > datos;
+    vector <T> datos;
     kdnodo<T> *hijoIzq;
     kdnodo<T> *hijoDer;
     int tag;
@@ -15,7 +15,7 @@ class kdnodo
   public:
   	kdnodo();
     T& obtenerDato();
-    void fijarDato(vector < T > & val);
+    void fijarDato(vector<T>& val);
     kdnodo<T>* obtenerHijoIzq();
     kdnodo<T>* obtenerHijoDer();
     void fijarHijoIzq(kdnodo<T> *izq);
@@ -34,5 +34,4 @@ class kdnodo
     void imprimir();
 };
 
-#include "kdnodo.hxx"
 #endif

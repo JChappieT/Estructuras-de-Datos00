@@ -1,7 +1,6 @@
 #ifndef __KDTREE__H__
 #define __KDTREE__H__
-
-#include "kdtree.h"
+#include "kdnodo.h"
 
 using namespace std;
 
@@ -17,7 +16,7 @@ public:
     int tamano();
     void insertar(T& val);
     bool eliminar(T& val);
-    kdnodo<T>*  buscar(T& val);
+    kdnodo<T>* buscar(T& val);
     void preOrden();
     void inOrden();
     void posOrden();
@@ -26,5 +25,5 @@ public:
     void minimo(int &mini);
 };
 
-#include "kdtree.hxx"
+
 #endif

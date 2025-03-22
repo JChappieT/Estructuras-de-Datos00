@@ -14,13 +14,13 @@ kdnodo<T>::kdnodo()
 template<class T>
 T& kdnodo<T>::obtenerDato()
 {
-    return this->dato;
+    return this->datos;
 }
 
 template<class T>
-void kdnodo<T>::fijarDato(vector < T >& val)
+void kdnodo<T>::fijarDato(vector<T>& val)
 {
-    this->dato = val;
+    this->datos = val;
 }
 
 template<class T>
@@ -142,7 +142,7 @@ kdnodo<T>* kdnodo<T>:: buscar(vector < T >& val)
 }
 
 template<class T>
-bool knodo<T>::iguales(vector < T >& val)
+bool kdnodo<T>:: iguales(vector < T >& val)
 {
   for(int i = 0 ; i < val.size() ; ++i)
   {

@@ -1,4 +1,5 @@
 #include "ArbolBinario.h"
+#include "NodoBinario.h"
 
 using namespace std;
 

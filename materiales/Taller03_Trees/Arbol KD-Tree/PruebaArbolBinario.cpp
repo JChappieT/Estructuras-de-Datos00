@@ -8,9 +8,9 @@ using namespace std;
 
 main(int argc, char* argv[])
 {
-    cout<<"ARBOL BINARIO ORDENADO"<<endl;
+    cout<<"ARBOL KD ORDENADO"<<endl;
     cout<<"****************************************************************"<<endl;
-    kstree<int> arbolito;
+    kdtree<int> arbolito;
 	for(int i=0; i<15; i++)
 	{
 	    cout<<"Inserte dato: ";
