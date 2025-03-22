@@ -144,7 +144,7 @@ void Nodo<T>:: posOrden()
 }
 
 template<class T>
-void Nodo<T>:: nivelOrden(std::queue<Nodo*> &cola){
+void Nodo<T>:: nivelOrden(){
 	cola.push(this);
 	for(int i=0 ; i<this->hijos->size() ; i++){
         cola.push(this->hijos[i]);

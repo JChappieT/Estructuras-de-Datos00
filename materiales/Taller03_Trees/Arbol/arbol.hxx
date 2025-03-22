@@ -59,7 +59,7 @@ bool Arbol<T>:: insertarNodo(T padre, T val)
 }
 
 template<class T>
-bool Arbol<T>:: eliminar(T val)
+bool Arbol<T>:: eliminar(T& val)
 {
     return this->raiz->eliminar(val);
 }

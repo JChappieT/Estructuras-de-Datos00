@@ -1,6 +1,8 @@
 #ifndef __NODO__H__
 #define __NODO__H__
 
+#include <queue>
+
 using namespace std;
 
 template< class T >
