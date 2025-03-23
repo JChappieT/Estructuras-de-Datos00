@@ -259,7 +259,6 @@ void Nodo<T>:: posOrden()
         this->SW->preOrden();
     if(this->SE !=NULL)
         this->SE->preOrden();
-
     cout << "("<<this->dato.first<<','<<this->dato.second <<")"<< endl;
     return;
 

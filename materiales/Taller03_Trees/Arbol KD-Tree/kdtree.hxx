@@ -1,6 +1,4 @@
 #include "kdtree.h"
-
-
 using namespace std;
 
 
@@ -42,7 +40,7 @@ int kdtree<T>::tamano()
 }
 
 template<class T>
-void kdtree<T>::insertar(T& val)
+void kdtree<T>::insertar(vector < T >& val)
 {
 	if(this->raiz!=NULL){
 		this->raiz->insertar(val);
@@ -56,13 +54,6 @@ void kdtree<T>::insertar(T& val)
 
 }
 
-
-
-template<class T>
-bool kdtree<T>::eliminar(T& val)
-{
-
-}
 
 template<class T>
 kdnodo<T>* kdtree<T>::buscar(T& val)

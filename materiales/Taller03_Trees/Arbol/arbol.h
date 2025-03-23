@@ -26,5 +26,5 @@ class Arbol {
     	void posOrden();
     	void nivelOrden();
 };
-
+#include "arbol.hxx"
 #endif

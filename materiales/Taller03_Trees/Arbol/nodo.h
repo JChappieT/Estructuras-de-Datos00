@@ -26,5 +26,5 @@ class Nodo{
     void nivelOrden(std::queue<Nodo*> &cola);
     Nodo* buscar(T val);
 };
-
+#include "nodo.hxx"
 #endif

@@ -60,13 +60,7 @@ void Arbol<T>:: insertar(pair<T,T> val)
     this->raiz->insertar(val);
 }
 
-/*
-template<class T>
-bool Arbol<T>:: eliminar(T val)
-{
-    return this->raiz->eliminar(val);
-}
-*/
+
 template<class T>
 Nodo<T>* Arbol<T>::  buscar(pair<T,T> val)
 {

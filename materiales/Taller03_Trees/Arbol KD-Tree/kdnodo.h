@@ -33,5 +33,5 @@ class kdnodo
     void minimo(int &mini);
     void imprimir();
 };
-
+#include "kdnodo.hxx"
 #endif

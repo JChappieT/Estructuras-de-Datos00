@@ -142,20 +142,6 @@ kdnodo<T>* kdnodo<T>:: buscar(vector < T >& val)
 }
 
 template<class T>
-bool kdnodo<T>:: iguales(vector < T >& val)
-{
-  for(int i = 0 ; i < val.size() ; ++i)
-  {
-    if(this->datos[i] != val[i])
-    {
-      return false;
-    }
-  }
-  return true;
-}
-
-
-template<class T>
 void kdnodo<T>:: preOrden()
 {
 this->imprimir();

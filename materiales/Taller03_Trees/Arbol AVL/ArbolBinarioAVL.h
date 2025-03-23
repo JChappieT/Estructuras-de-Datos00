@@ -1,5 +1,5 @@
-#ifndef ARBOLBINARIOAVL_H
-#define ARBOLBINARIOAVL_H
+#ifndef _ARBOLBINARIOAVL_H_
+#define _ARBOLBINARIOAVL_H_
 
 #include "NodoBinarioAVL.h"
 template <class T>

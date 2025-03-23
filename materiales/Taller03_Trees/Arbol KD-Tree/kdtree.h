@@ -14,8 +14,7 @@ public:
     T& datoRaiz();
     int altura();
     int tamano();
-    void insertar(T& val);
-    bool eliminar(T& val);
+    void insertar(vector < T >& val);
     kdnodo<T>* buscar(T& val);
     void preOrden();
     void inOrden();
@@ -24,6 +23,6 @@ public:
     void maximo(int &maxi);
     void minimo(int &mini);
 };
-
+#include "kdtree.hxx"
 
 #endif
