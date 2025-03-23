@@ -23,9 +23,8 @@ class Nodo{
     bool eliminarDesc(T &val);
     void preOrden();
     void posOrden();
-    void nivelOrden();
+    void nivelOrden(std::queue<Nodo*> &cola);
     Nodo* buscar(T val);
 };
 
-#include "nodo.hxx"
 #endif
