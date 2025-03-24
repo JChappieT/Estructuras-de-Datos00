@@ -1,3 +1,11 @@
+/********************************************************
+ Fecha: 23 de marzo de 2025
+ Autores: Jeronimo Chaparro Tenorio.
+ Materia: Estructura de Datos.
+ Tema: Taller 3
+ Pontificia Universidad Javeriana
+ Archivo: NodoBinarioAVL.h
+ ********************************************************/
 #ifndef NODOBINARIOAVL_H
 #define NODOBINARIOAVL_H
 
@@ -10,8 +18,10 @@ class NodoBinarioAVL{
 		NodoBinarioAVL<T> *hijoDer;
 
 	public:
+		//Contructores
 		NodoBinarioAVL();
 		~NodoBinarioAVL();
+		//Geters y Seters
 		T& getDato();
 		void setDato(T& val);
 		NodoBinarioAVL<T>* getHijoIzq();

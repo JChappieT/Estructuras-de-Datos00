@@ -1,15 +1,23 @@
+/********************************************************
+ Fecha: 23 de marzo de 2025
+ Autores: Jeronimo Chaparro Tenorio.
+ Materia: Estructura de Datos.
+ Tema: Taller 3
+ Pontificia Universidad Javeriana
+ Archivo: NodoBinario.hxx
+ ********************************************************/
 #include "NodoBinario.h"
 #include <bits/stdc++.h>
 
 using namespace std;
-
+//Contructor
 template<class T>
 NodoBinario<T>::NodoBinario()
 {
     this->hijoIzq=NULL;
     this->hijoDer=NULL;
 }
-
+//Geters y Seters
 template<class T>
 T& NodoBinario<T>::obtenerDato()
 {
@@ -45,7 +53,7 @@ void NodoBinario<T>::fijarHijoDer(NodoBinario<T> *der)
 {
     this->hijoDer = der;
 }
-
+//Función para saber la altura del nodo
 template<class T>
 int NodoBinario<T>::altura()
 {
@@ -62,7 +70,7 @@ int NodoBinario<T>::altura()
 	return max(this->hijoIzq->altura() , this->hijoDer->altura());
 }
 
-
+//Función para saber la tamaño del nodo
 template<class T>
 int NodoBinario<T>::tamano()
 {
@@ -78,7 +86,7 @@ int NodoBinario<T>::tamano()
 
 	return this->hijoIzq->tamano() + this->hijoDer->tamano() +1 ;
 }
-
+//Función para insertar un valor
 template<class T>
 void NodoBinario<T>:: insertar(T& val)
 {
@@ -111,7 +119,7 @@ void NodoBinario<T>:: insertar(T& val)
 
 }
 
-
+//Función para buscar un valor
 template<class T>
 NodoBinario<T>* NodoBinario<T>:: buscar(T& val)
 {
@@ -133,7 +141,7 @@ NodoBinario<T>* NodoBinario<T>:: buscar(T& val)
 	}
 }
 
-
+//Funcón obtener el nodo mas a la derecha
 template<class T>
 NodoBinario<T>* NodoBinario<T>::extremo_der()
 {
@@ -142,7 +150,7 @@ NodoBinario<T>* NodoBinario<T>::extremo_der()
     else
         return this;
 }
-
+//Funcón obtener el nodo mas a la izquierda
 template<class T>
 NodoBinario<T>* NodoBinario<T>::extremo_izq()
 {
@@ -152,7 +160,7 @@ NodoBinario<T>* NodoBinario<T>::extremo_izq()
         return this;
 }
 
-
+//Funcón para recorrer el árbol en preOrden
 template<class T>
 void NodoBinario<T>:: preOrden()
 {
@@ -164,7 +172,7 @@ void NodoBinario<T>:: preOrden()
 	return;
 }
 
-
+//Funcón para recorrer el árbol en inOrden
 template<class T>
 void NodoBinario<T>:: inOrden()
 {
@@ -179,8 +187,7 @@ void NodoBinario<T>:: inOrden()
 
 }
 
-
-
+//Funcón para recorrer el árbol en posOrden
 template<class T>
 void NodoBinario<T>:: posOrden()
 {
@@ -195,7 +202,7 @@ void NodoBinario<T>:: posOrden()
 
 }
 
-
+//Funcón para recorrer el árbol en nivelOrden
 template<class T>
 void NodoBinario<T>:: nivelOrden()
 {

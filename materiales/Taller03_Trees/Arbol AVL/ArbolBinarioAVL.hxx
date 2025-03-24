@@ -1,28 +1,36 @@
+/********************************************************
+ Fecha: 23 de marzo de 2025
+ Autores: Jeronimo Chaparro Tenorio.
+ Materia: Estructura de Datos.
+ Tema: Taller 3
+ Pontificia Universidad Javeriana
+ Archivo: ArbolBinarioAVL.hxx
+ ********************************************************/
 #include "ArbolBinarioAVL.h"
 #include <queue>
 
 using namespace std;
-
+//Constructor
 template <class T>
 ArbolBinarioAVL<T>::ArbolBinarioAVL(){
 	this->raiz=NULL;
 }
-
+//Constructor
 template <class T>
 ArbolBinarioAVL<T>::~ArbolBinarioAVL(){
 }
-
+//SetRaíz
 template <class T>
 void ArbolBinarioAVL<T>::setRaiz(NodoBinarioAVL<T>* raiz){
 	this->raiz=raiz;
 	return;
 }
-
+//GetRaíz
 template <class T>
 NodoBinarioAVL<T>* ArbolBinarioAVL<T>::getRaiz(){
 	return this->raiz;
 }
-
+//Función para saber si el árbol está vacío
 template <class T>
 bool ArbolBinarioAVL<T>::esVacio(){
 	if(this->raiz==NULL){
@@ -30,12 +38,12 @@ bool ArbolBinarioAVL<T>::esVacio(){
 	}
 	return false;
 }
-
+//Devuelve el dato de la raíz
 template <class T>
 T& ArbolBinarioAVL<T>::datoRaiz(){
 	return (this->raiz)->getDato();
 }
-
+//Devuelve la altura del árbol
 template <class T>
 int ArbolBinarioAVL<T>::altura(NodoBinarioAVL<T> *inicio){
 	int alturaIzq=0;
@@ -58,7 +66,7 @@ int ArbolBinarioAVL<T>::altura(NodoBinarioAVL<T> *inicio){
 		return (alturaDer);
 	}
 }
-
+//Devuelve el tamaño del árbol
 template <class T>
 int ArbolBinarioAVL<T>::tamano(NodoBinarioAVL<T> *inicio){
 	int nodosIzq=0;
@@ -77,7 +85,7 @@ int ArbolBinarioAVL<T>::tamano(NodoBinarioAVL<T> *inicio){
 	}
 	return nodosIzq+nodosDer+1;
 }
-
+//Función para hacer un giro a la derecha sobre un conjunto de nodos
 template <class T>
 NodoBinarioAVL<T>* ArbolBinarioAVL<T>::giroDerecha(NodoBinarioAVL<T>* &padre){
 	NodoBinarioAVL<T> *n_padre=padre->getHijoIzq();
@@ -85,7 +93,7 @@ NodoBinarioAVL<T>* ArbolBinarioAVL<T>::giroDerecha(NodoBinarioAVL<T>* &padre){
 	n_padre->setHijoDer(padre);
 	return n_padre;
 }
-
+//Función para hacer un giro a la izquierda sobre un conjunto de nodos
 template <class T>
 NodoBinarioAVL<T>* ArbolBinarioAVL<T>::giroIzquierda(NodoBinarioAVL<T>* &padre){
 	NodoBinarioAVL<T> *n_padre=padre->getHijoDer();
@@ -93,21 +101,21 @@ NodoBinarioAVL<T>* ArbolBinarioAVL<T>::giroIzquierda(NodoBinarioAVL<T>* &padre){
 	n_padre->setHijoIzq(padre);
 	return n_padre;
 }
-
+//Función para hacer un giro a la izquierda y luego derecha sobre un conjunto de nodos
 template <class T>
 NodoBinarioAVL<T>* ArbolBinarioAVL<T>::giroIzquierdaDerecha(NodoBinarioAVL<T>* &padre){
 	NodoBinarioAVL<T> **primGiro=&(padre->hijoIzq);
 	padre->setHijoIzq(giroIzquierda(*primGiro));
 	return giroDerecha(padre);
 }
-
+//Función para hacer un giro a la derecha y luego a la izquierda sobre un conjunto de nodos
 template <class T>
 NodoBinarioAVL<T>* ArbolBinarioAVL<T>::giroDerechaIzquierda(NodoBinarioAVL<T>* &padre){
 	NodoBinarioAVL<T> **primGiro=&(padre->hijoDer);
 	padre->setHijoDer(giroDerecha(*primGiro));
 	return giroIzquierda(padre);
 }
-
+//Función para insertar un valor
 template <class T>
 bool ArbolBinarioAVL<T>::insertar(T& val){
 	NodoBinarioAVL<T> *nodoActual=this->raiz;
@@ -172,7 +180,7 @@ bool ArbolBinarioAVL<T>::insertar(T& val){
 	}
 	return nodoInsertado;
 }
-
+//Función para eliminar un valor
 template <class T>
 bool ArbolBinarioAVL<T>::eliminar(T& val){
 	NodoBinarioAVL<T> *buscaNodo=this->raiz;
@@ -265,7 +273,7 @@ bool ArbolBinarioAVL<T>::eliminar(T& val){
 	}
 	return false;
 }
-
+//Función para buscar un valor
 template <class T>
 bool ArbolBinarioAVL<T>::buscar(T& val){
 	NodoBinarioAVL<T> *buscaNodo=this->raiz;
@@ -290,7 +298,7 @@ bool ArbolBinarioAVL<T>::buscar(T& val){
 		return false;
 	}
 }
-
+//Función para recorrer el árbol en preOrden
 template <class T>
 void ArbolBinarioAVL<T>::preOrden(NodoBinarioAVL<T> *inicio){
 	cout<<inicio->getDato()<<" ";
@@ -302,7 +310,7 @@ void ArbolBinarioAVL<T>::preOrden(NodoBinarioAVL<T> *inicio){
 	}
 	return;
 }
-
+//Función para recorrer el árbol en inOrden
 template <class T>
 void ArbolBinarioAVL<T>::inOrden(NodoBinarioAVL<T> *inicio){
 	if(inicio->getHijoIzq()!=NULL){
@@ -314,7 +322,7 @@ void ArbolBinarioAVL<T>::inOrden(NodoBinarioAVL<T> *inicio){
 	}
 	return;
 }
-
+//Función para recorrer el árbol en posOrden
 template <class T>
 void ArbolBinarioAVL<T>::posOrden(NodoBinarioAVL<T> *inicio){
 	if(inicio->getHijoIzq()!=NULL){
@@ -326,7 +334,7 @@ void ArbolBinarioAVL<T>::posOrden(NodoBinarioAVL<T> *inicio){
 	cout<<inicio->getDato()<<" ";
 	return;
 }
-
+//Función para recorrer el árbol en nivelOrden
 template <class T>
 void ArbolBinarioAVL<T>::nivelOrden(NodoBinarioAVL<T> *inicio){
 	queue<NodoBinarioAVL<T>> colaNivel;

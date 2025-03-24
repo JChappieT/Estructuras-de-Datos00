@@ -89,7 +89,6 @@ int kdnodo<T>::tamano()
 template<class T>
 void kdnodo<T>:: insertar(vector < T >& val)
 {
-
 	if(val[this->tag] > this->datos[this->tag])
   {
 		if(this->hijoDer == NULL)
