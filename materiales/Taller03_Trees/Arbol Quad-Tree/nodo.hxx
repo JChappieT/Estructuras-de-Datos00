@@ -1,8 +1,16 @@
+/********************************************************
+ Fecha: 23 de marzo de 2025
+ Autores: Jeronimo Chaparro Tenorio.
+ Materia: Estructura de Datos.
+ Tema: Taller 3
+ Pontificia Universidad Javeriana
+ Archivo: nodo.hxx
+ ********************************************************/
 #include "Nodo.h"
 #include <bits/stdc++.h>
 
 using namespace std;
-
+//Constructor
 template<class T>
 Nodo<T>::Nodo()
 {
@@ -23,20 +31,20 @@ Nodo<T>::Nodo(pair<T,T> val)
     this->SE = NULL;
 }
 
-
+//Función para obtener el dato del nodo
 template<class T>
 pair<T,T> Nodo<T>::obtenerDato()
 {
     return this->dato;
 }
-
+//Función para ponerle un dato al nodo
 template<class T>
 void Nodo<T>::fijarDato(pair<T,T> val)
 {
     this->dato = val;
     return;
 }
-
+//Función para saber la altura del nodo
 template<class T>
 int Nodo<T>::altura()
 {
@@ -70,7 +78,7 @@ int Nodo<T>::altura()
     }
 }
 
-
+//Función para saber el tamaño del nodo
 template<class T>
 int Nodo<T>::tamano()
 {
@@ -96,7 +104,7 @@ int Nodo<T>::tamano()
     }
     return cont;
 }
-
+//Función para insertar un nodo
 template<class T>
 void Nodo<T>:: insertar(pair<T,T> val)
 {
@@ -162,7 +170,7 @@ void Nodo<T>:: insertar(pair<T,T> val)
         }
     }
 }
-
+//Funcón para buscar un valor
 template<class T>
 Nodo<T>* Nodo<T>:: buscar(pair<T,T> val)
 {
@@ -227,7 +235,7 @@ Nodo<T>* Nodo<T>:: buscar(pair<T,T> val)
     return NULL;
 
 }
-
+//Funcón para recorrer el árbol en preOrden
 template<class T>
 void Nodo<T>:: preOrden()
 {
@@ -246,8 +254,7 @@ void Nodo<T>:: preOrden()
 
 
 
-
-
+//Funcón para recorrer el árbol en posOrden
 template<class T>
 void Nodo<T>:: posOrden()
 {

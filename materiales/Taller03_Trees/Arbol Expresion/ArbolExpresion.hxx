@@ -1,15 +1,24 @@
+/********************************************************
+ Fecha: 23 de marzo de 2025
+ Autores: Jeronimo Chaparro Tenorio.
+ Materia: Estructura de Datos.
+ Tema: Taller 3
+ Pontificia Universidad Javeriana
+ Archivo: ArbolExpresion.hxx
+ ********************************************************/
 #include "ArbolExpresion.h"
 #include <iostream>
 #include <string>
 #include <stack>
 using namespace std;
 
-
+//Contructores
 ArbolExpresion::ArbolExpresion(){
 	this->raiz=NULL;
 }
 ArbolExpresion::~ArbolExpresion(){
 }
+//Geters y Seters
 NodoExpresion* ArbolExpresion::getRaiz(){
 	return this->raiz;
 }
@@ -17,6 +26,7 @@ void ArbolExpresion::setRaiz(NodoExpresion* nod){
 	this->raiz=nod;
 	return;
 }
+//Función para obtener el reusltado de la eccuación
 int ArbolExpresion::evaluar(NodoExpresion* nodi){
 	if(nodi->getHijoIzq()==NULL&&nodi->getHijoDer()==NULL){
 
@@ -49,7 +59,7 @@ int ArbolExpresion::evaluar(NodoExpresion* nodi){
 	}
 
 }
-
+//Funcón para ingresar una eccuación al árbol en preOrden
 void ArbolExpresion::llenarDesdePrefija(string &expresion){
 
 	char cad[expresion.size()];
@@ -88,7 +98,7 @@ void ArbolExpresion::llenarDesdePrefija(string &expresion){
 	this->setRaiz(n1);
 	miCola.pop();
 }
-
+//Funcón para ingresar una eccuación al árbol en posOrden
 void ArbolExpresion::llenarDesdePosfija(string &expresion){
 
 	char cad[expresion.size()];
@@ -128,7 +138,7 @@ void ArbolExpresion::llenarDesdePosfija(string &expresion){
 	this->setRaiz(n1);
 	miCola.pop();
 }
-
+//Funcón para recorrer el árbol en preOrden
 void ArbolExpresion::obtenerPrefija(NodoExpresion* inicio){
 	if(inicio==NULL){
 		return;
@@ -138,6 +148,7 @@ void ArbolExpresion::obtenerPrefija(NodoExpresion* inicio){
 		this->obtenerPrefija(inicio->getHijoDer());
 	}
 }
+//Funcón para recorrer el árbol en inOrden
 void ArbolExpresion::obtenerInfija(NodoExpresion* inicio){
 	if(this->raiz!=NULL){
 		if(inicio->getHijoIzq()!=NULL){
@@ -151,6 +162,7 @@ void ArbolExpresion::obtenerInfija(NodoExpresion* inicio){
 		cout << "El arbol esta vacio" << '\n';
 	}
 }
+//Funcón para recorrer el árbol en posOrden
 void ArbolExpresion::obtenerPosfija(NodoExpresion* inicio){
 	if(inicio==NULL){
 		return;
@@ -160,7 +172,7 @@ void ArbolExpresion::obtenerPosfija(NodoExpresion* inicio){
 		cout<<inicio->getDato()<<" ";
 	}
 }
-
+//Función para saber si el dato es un operando
 bool ArbolExpresion::siOperando(char car){
 	if(car=='+'||car=='-'||car=='/'||car=='*'||car=='%'){
 		return true;

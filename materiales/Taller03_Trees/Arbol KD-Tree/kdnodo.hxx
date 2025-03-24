@@ -1,8 +1,16 @@
+/********************************************************
+ Fecha: 23 de marzo de 2025
+ Autores: Jeronimo Chaparro Tenorio.
+ Materia: Estructura de Datos.
+ Tema: Taller 3
+ Pontificia Universidad Javeriana
+ Archivo: kdnodo.hxx
+ ********************************************************/
 #include "kdnodo.h"
 #include <bits/stdc++.h>
 
 using namespace std;
-
+//Contructor
 template<class T>
 kdnodo<T>::kdnodo()
 {
@@ -10,7 +18,7 @@ kdnodo<T>::kdnodo()
     this->hijoDer = NULL;
     this->tag = 0;
 }
-
+ //Geters y Seters
 template<class T>
 T& kdnodo<T>::obtenerDato()
 {
@@ -52,7 +60,7 @@ void kdnodo<T>::fijarHijoDer(kdnodo<T> *der)
 {
     this->hijoDer = der;
 }
-
+//Función para saber la altura del nodo
 template<class T>
 int kdnodo<T>::altura()
 {
@@ -69,7 +77,7 @@ int kdnodo<T>::altura()
 	return max(this->hijoIzq->altura() , this->hijoDer->altura());
 }
 
-
+//Función para saber el tamaño del nodo
 template<class T>
 int kdnodo<T>::tamano()
 {
@@ -85,7 +93,7 @@ int kdnodo<T>::tamano()
 
 	return this->hijoIzq->tamano() + this->hijoDer->tamano() +1 ;
 }
-
+//Función para insertar un nodo
 template<class T>
 void kdnodo<T>:: insertar(vector < T >& val)
 {
@@ -121,7 +129,7 @@ void kdnodo<T>:: insertar(vector < T >& val)
 
 }
 
-
+//Función para buscar un valor
 template<class T>
 kdnodo<T>* kdnodo<T>:: buscar(vector < T >& val)
 {
@@ -139,7 +147,7 @@ kdnodo<T>* kdnodo<T>:: buscar(vector < T >& val)
 		return this->hijoDer->buscar(val);
 	}
 }
-
+//Funcón para recorrer el árbol en preOrden
 template<class T>
 void kdnodo<T>:: preOrden()
 {
@@ -151,7 +159,7 @@ this->imprimir();
 	return;
 }
 
-
+ //Funcón para recorrer el árbol en inOrden
 template<class T>
 void kdnodo<T>:: inOrden()
 {
@@ -167,7 +175,7 @@ void kdnodo<T>:: inOrden()
 }
 
 
-
+//Funcón para recorrer el árbol en posOrden
 template<class T>
 void kdnodo<T>:: posOrden()
 {
@@ -182,7 +190,7 @@ void kdnodo<T>:: posOrden()
 
 }
 
-
+//Funcón para recorrer el árbol en nivelOrden
 template<class T>
 void kdnodo<T>:: nivelOrden()
 {
@@ -201,7 +209,7 @@ void kdnodo<T>:: nivelOrden()
 	}
 }
 
-
+//Función para hallar el valor mínimo 
 template<class T>
 void kdnodo<T>:: maximo(int &maxi)
 {
@@ -217,7 +225,7 @@ void kdnodo<T>:: maximo(int &maxi)
 	return;
 
 }
-
+//Función para hallar el valor máximo 
 template<class T>
 void kdnodo<T>:: minimo(int &mini)
 {
@@ -234,7 +242,7 @@ void kdnodo<T>:: minimo(int &mini)
 
 }
 
-
+//Función para imprimir el nodo
 template<class T>
 void kdnodo<T>:: imprimir()
 {

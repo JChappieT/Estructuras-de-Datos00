@@ -1,3 +1,11 @@
+/********************************************************
+ Fecha: 23 de marzo de 2025
+ Autores: Jeronimo Chaparro Tenorio.
+ Materia: Estructura de Datos.
+ Tema: Taller 3
+ Pontificia Universidad Javeriana
+ Archivo: NodoExpresion.h
+ ********************************************************/
 #ifndef NODOEXPRESION_H
 #define NODOEXPRESION_H
 #include <string.h>
@@ -11,9 +19,10 @@ class NodoExpresion{
     NodoExpresion *hijoIzq;
     NodoExpresion *hijoDer;
   public:
+  //Constructores
   NodoExpresion();
   ~NodoExpresion();
-
+  //Setes y Getters
   char getDato();
   void setDato(char val);
 

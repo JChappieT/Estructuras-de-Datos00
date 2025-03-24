@@ -1,3 +1,11 @@
+/********************************************************
+ Fecha: 23 de marzo de 2025
+ Autores: Jeronimo Chaparro Tenorio.
+ Materia: Estructura de Datos.
+ Tema: Taller 3
+ Pontificia Universidad Javeriana
+ Archivo: ArbolBinario.h
+ ********************************************************/
 #ifndef __ARBOLBINARIO__H__
 #define __ARBOLBINARIO__H__
 
