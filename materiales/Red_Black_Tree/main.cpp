@@ -14,19 +14,20 @@ int main() {
     RedBlackTree tree;
 
     // Insert nodes into the tree
-    tree.insert(10);
-    tree.insert(5);
-    tree.insert(15);
-    tree.insert(3);
+    tree.insert(11);
+    tree.insert(19);
     tree.insert(7);
-    tree.insert(12);
-    tree.insert(18);
+    tree.insert(14);
+    tree.insert(17);
+    tree.insert(31);
+    tree.insert(26);
+    tree.insert(45);
 
     std::cout << "Red-Black Tree structure:" << std::endl;
     tree.printTree();
 
     // Remove a node from the tree
-    tree.remove(5);
+    tree.remove(45);
     std::cout << "\nAfter deleting node 5:" << std::endl;
     tree.printTree();
 
