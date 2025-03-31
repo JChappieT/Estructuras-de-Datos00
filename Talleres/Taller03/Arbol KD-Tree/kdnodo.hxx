@@ -1,10 +1,10 @@
 /********************************************************
  Fecha: 23 de marzo de 2025
- Autores: Jeronimo Chaparro Tenorio.
+ Autores: Jeronimo Chaparro Tenorio, Santiago Mesa.
  Materia: Estructura de Datos.
  Tema: Taller 3
  Pontificia Universidad Javeriana
- Archivo: kdnodo.hxx
+ Archivo: arbol.h
  ********************************************************/
 #include "kdnodo.h"
 #include <bits/stdc++.h>
@@ -20,7 +20,7 @@ kdnodo<T>::kdnodo()
 }
  //Geters y Seters
 template<class T>
-T& kdnodo<T>::obtenerDato()
+vector<T>& kdnodo<T>::obtenerDato()
 {
     return this->datos;
 }
@@ -95,38 +95,36 @@ int kdnodo<T>::tamano()
 }
 //Función para insertar un nodo
 template<class T>
-void kdnodo<T>:: insertar(vector < T >& val)
+void kdnodo<T>::insertar(vector<T>& val)
 {
-	if(val[this->tag] > this->datos[this->tag])
-  {
-		if(this->hijoDer == NULL)
-		{
-			kdnodo* nuevo= new kdnodo();
-      nuevo->fijarTag((this->tag+1)%val.size());
-			nuevo->fijarDato(val);
-			this->fijarHijoDer(nuevo);
-		}
-		else
-		{
-			this->hijoDer->insertar(val);
-		}
-	}
-
-	if(val[this->tag] < this->datos[this->tag])
-  {
-		if(this->hijoIzq == NULL)
-		{
-      kdnodo* nuevo= new kdnodo();
-      nuevo->fijarTag((this->tag+1)%val.size());
-			nuevo->fijarDato(val);
-			this->fijarHijoIzq(nuevo);
-		}
-		else
-		{
-			this->hijoIzq->insertar(val);
-		}
-	}
-
+    if(val[this->tag] > this->datos[this->tag])
+    {
+        if(this->hijoDer == NULL)
+        {
+            kdnodo* nuevo = new kdnodo();
+            nuevo->fijarTag((this->tag + 1) % val.size());
+            nuevo->fijarDato(val);
+            this->fijarHijoDer(nuevo);
+        }
+        else
+        {
+            this->hijoDer->insertar(val);
+        }
+    }
+    else // incluye caso val[tag] <= datos[tag]
+    {
+        if(this->hijoIzq == NULL)
+        {
+            kdnodo* nuevo = new kdnodo();
+            nuevo->fijarTag((this->tag + 1) % val.size());
+            nuevo->fijarDato(val);
+            this->fijarHijoIzq(nuevo);
+        }
+        else
+        {
+            this->hijoIzq->insertar(val);
+        }
+    }
 }
 
 //Función para buscar un valor

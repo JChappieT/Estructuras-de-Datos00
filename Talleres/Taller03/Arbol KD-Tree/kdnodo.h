@@ -1,10 +1,10 @@
 /********************************************************
  Fecha: 23 de marzo de 2025
- Autores: Jeronimo Chaparro Tenorio.
+ Autores: Jeronimo Chaparro Tenorio, Santiago Mesa.
  Materia: Estructura de Datos.
  Tema: Taller 3
  Pontificia Universidad Javeriana
- Archivo: kdnodo.h
+ Archivo: arbol.h
  ********************************************************/
 #ifndef __KDNODO__H__
 #define __KDNODO__H__
@@ -24,7 +24,7 @@ class kdnodo
     //Contructor
   	kdnodo();
     //Geters y Seters
-    T& obtenerDato();
+    vector<T>& obtenerDato();
     void fijarDato(vector<T>& val);
     kdnodo<T>* obtenerHijoIzq();
     kdnodo<T>* obtenerHijoDer();

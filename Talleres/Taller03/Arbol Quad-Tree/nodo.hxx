@@ -1,10 +1,10 @@
 /********************************************************
  Fecha: 23 de marzo de 2025
- Autores: Jeronimo Chaparro Tenorio.
+ Autores: Jeronimo Chaparro Tenorio, Santiago Mesa.
  Materia: Estructura de Datos.
  Tema: Taller 3
  Pontificia Universidad Javeriana
- Archivo: nodo.hxx
+ Archivo: arbol.h
  ********************************************************/
 #include "Nodo.h"
 #include <bits/stdc++.h>
@@ -259,17 +259,18 @@ template<class T>
 void Nodo<T>:: posOrden()
 {
     if(this->NW !=NULL)
-        this->NW->preOrden();
+        this->NW->posOrden();  // corregido
     if(this->NE !=NULL)
-        this->NE->preOrden();
+        this->NE->posOrden();  // corregido
     if(this->SW !=NULL)
-        this->SW->preOrden();
+        this->SW->posOrden();  // corregido
     if(this->SE !=NULL)
-        this->SE->preOrden();
+        this->SE->posOrden();  // corregido
+
     cout << "("<<this->dato.first<<','<<this->dato.second <<")"<< endl;
     return;
-
 }
+
 
 
 

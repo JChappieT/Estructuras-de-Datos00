@@ -1,6 +1,6 @@
 /********************************************************
  Fecha: 23 de marzo de 2025
- Autores: Jeronimo Chaparro Tenorio.
+ Autores: Jeronimo Chaparro Tenorio, Santiago Mesa.
  Materia: Estructura de Datos.
  Tema: Taller 3
  Pontificia Universidad Javeriana
@@ -43,7 +43,7 @@ class Nodo{
     //Función para recorrer el árbol en posOrden
     void posOrden();
     //Función para recorrer el árbol en nivelOrden
-    void nivelOrden(std::queue<Nodo*> &cola);
+    void nivelOrden(int nivel, int lvActual);
     //Función para buscar un valor
     Nodo* buscar(T val);
 };

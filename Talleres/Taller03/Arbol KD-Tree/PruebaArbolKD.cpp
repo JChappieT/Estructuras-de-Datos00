@@ -7,20 +7,23 @@
  Archivo: arbol.h
  ********************************************************/
 
-#include <bits/stdc++.h>
-#include "quadtree.h"
+#include<iostream>
+#include<set>
+#include<map>
+#include "kdtree.h"
 
 using namespace std;
 
-int main(int argc, char* argv[]){
-    Arbol<int> arbol;
-    pair<int, int> a = {5, 4};
-    pair<int, int> b = {3, 2};
-    pair<int, int> c = {4, 1};
-    pair<int, int> d = {8, 7};
-    pair<int, int> e = {1, 2};
-    pair<int, int> f = {9, 5};
-
+main(int argc, char* argv[]){
+    cout<<"ARBOL KD ORDENADO"<<endl;
+    cout<<"****************************************************************"<<endl;
+	kdtree<int> arbol;
+	vector<int> a = {5, 4};
+	vector<int> b = {3, 2};
+	vector<int> c = {4, 1};
+	vector<int> d = {8, 7};
+	vector<int> e = {1, 2};
+	vector<int> f = {9, 5};
 	arbol.insertar(a);
 	arbol.insertar(b);
 	arbol.insertar(c);
@@ -28,12 +31,17 @@ int main(int argc, char* argv[]){
 	arbol.insertar(e);
 	arbol.insertar(f);
 
+	cout<<endl;
 	cout<<"Pre Orden: "<<endl;
 	arbol.preOrden();
 	cout<<endl;
-	
-	cout<<endl;
+
 	cout<<"Pos Orden: "<<endl;
 	arbol.posOrden();
 	cout<<endl;
+
+	cout<<"In Orden: "<<endl;
+	arbol.inOrden();
+	cout<<endl;
+
 }

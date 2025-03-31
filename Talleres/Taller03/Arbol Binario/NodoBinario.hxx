@@ -1,10 +1,10 @@
 /********************************************************
  Fecha: 23 de marzo de 2025
- Autores: Jeronimo Chaparro Tenorio.
+ Autores: Jeronimo Chaparro Tenorio, Santiago Mesa.
  Materia: Estructura de Datos.
  Tema: Taller 3
  Pontificia Universidad Javeriana
- Archivo: NodoBinario.hxx
+ Archivo: arbol.h
  ********************************************************/
 #include "NodoBinario.h"
 #include <bits/stdc++.h>
@@ -143,12 +143,13 @@ NodoBinario<T>* NodoBinario<T>:: buscar(T& val)
 
 //Funcón obtener el nodo mas a la derecha
 template<class T>
-NodoBinario<T>* NodoBinario<T>::extremo_der()
-{
-    if(this->hijoDer != NULL)
-        return this->hijoDer->extremoDer();
-    else
-        return this;
+NodoBinario<T>* NodoBinario<T>::extremo_der(){
+    if(this->hijoDer != NULL){
+		return this->hijoDer->extremo_der();
+
+	}else{
+		return this;
+	} 
 }
 //Funcón obtener el nodo mas a la izquierda
 template<class T>
