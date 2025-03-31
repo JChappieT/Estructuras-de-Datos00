@@ -4,7 +4,7 @@
  Materia: Estructura de Datos.
  Tema: Taller 3
  Pontificia Universidad Javeriana
- Archivo: arbol.h
+ Archivo: nodo.h
  ********************************************************/
 #ifndef NODOBINARIOAVL_H
 #define NODOBINARIOAVL_H

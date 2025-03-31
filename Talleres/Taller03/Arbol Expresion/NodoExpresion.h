@@ -4,7 +4,7 @@
  Materia: Estructura de Datos.
  Tema: Taller 3
  Pontificia Universidad Javeriana
- Archivo: arbol.h
+ Archivo: nodo.h
  ********************************************************/
 #ifndef NODOEXPRESION_H
 #define NODOEXPRESION_H

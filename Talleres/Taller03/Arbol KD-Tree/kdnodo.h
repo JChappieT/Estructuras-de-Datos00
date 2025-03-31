@@ -4,7 +4,7 @@
  Materia: Estructura de Datos.
  Tema: Taller 3
  Pontificia Universidad Javeriana
- Archivo: arbol.h
+ Archivo: nodo.h
  ********************************************************/
 #ifndef __KDNODO__H__
 #define __KDNODO__H__

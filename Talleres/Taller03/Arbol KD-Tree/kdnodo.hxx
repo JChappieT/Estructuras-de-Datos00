@@ -4,7 +4,7 @@
  Materia: Estructura de Datos.
  Tema: Taller 3
  Pontificia Universidad Javeriana
- Archivo: arbol.h
+ Archivo: nodo.hxx
  ********************************************************/
 #include "kdnodo.h"
 #include <bits/stdc++.h>
