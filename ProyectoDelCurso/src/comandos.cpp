@@ -10,6 +10,7 @@
 #include "clases.h"
 #include <fstream>
 
+using namespace std;
 /*Creamos una clase de tipo Imagen*/
 Imagen imagen;
 bool cargadaI = false;
@@ -336,6 +337,7 @@ void codificarImagen(const std::vector<std::string>& argumentos) {
         std::cout << "Error: No hay ninguna imagen cargada en memoria.\n";
         return;
     }
+    
     vector<unsigned long> freq(256, 0);
     for (const auto& fila : imagen.getLista()) {
         for (int valor : fila) {
@@ -345,15 +347,16 @@ void codificarImagen(const std::vector<std::string>& argumentos) {
     HuffmanTree tree(freq);
     map<unsigned char, string> codes = tree.getCodes();
     vector<unsigned char> pixels(imagen.getXTamano() * imagen.getYTamano());
-
+    
     ofstream out(argumentos[1], ios::binary);
+    cout << "BANDERA1\n";
     out.write(reinterpret_cast<char*>(imagen.getXTamano()), sizeof(unsigned short));
     out.write(reinterpret_cast<char*>(imagen.getYTamano()), sizeof(unsigned short));
     out.write(reinterpret_cast<char*>(imagen.getMaxIntensidad()), sizeof(unsigned char));
     for (int i = 0; i <= imagen.getMaxIntensidad(); i++) {
         out.write(reinterpret_cast<char*>(&freq[i]), sizeof(unsigned long));
     }
-    
+    cout << "BANDERA2\n";
     string bitStream;
     for(auto it = imagen.getLista().begin(); it != imagen.getLista().end(); ++it) {
         for (int valor : *it) {
@@ -367,7 +370,7 @@ void codificarImagen(const std::vector<std::string>& argumentos) {
     while (bitStream.size() % 8 != 0) {
         bitStream += "0";
     }
-    
+    cout << "BANDERA3\n";
     for (size_t i = 0; i < bitStream.size(); i += 8) {
         bitset<8> byte(bitStream.substr(i, 8));
         unsigned char byteVal = static_cast<unsigned char>(byte.to_ulong());
