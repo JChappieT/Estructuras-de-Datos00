@@ -17,6 +17,8 @@ bool cargadaI = false;
 Volumen volumen;
 bool cargadaV = false;
 
+vector<unsigned long> freq(256, 0);
+
 /*Funcion que veifica si el archivo existe*/
 bool archivoExiste(const std::string& nombreArchivo) {
     std::ifstream archivo(nombreArchivo);
@@ -338,7 +340,7 @@ void codificarImagen(const std::vector<std::string>& argumentos) {
         return;
     }
     
-    vector<unsigned long> freq(256, 0);
+    //vector<unsigned long> freq(256, 0);
     for (const auto& fila : imagen.getLista()) {
         for (int valor : fila) {
             freq[valor]++;
@@ -347,16 +349,18 @@ void codificarImagen(const std::vector<std::string>& argumentos) {
     HuffmanTree tree(freq);
     map<unsigned char, string> codes = tree.getCodes();
     vector<unsigned char> pixels(imagen.getXTamano() * imagen.getYTamano());
+
+    unsigned short xTamano = static_cast<unsigned short>(imagen.getXTamano());
+    unsigned short yTamano = static_cast<unsigned short>(imagen.getYTamano());
+    unsigned short maxIntensidad = static_cast<unsigned short>(imagen.getMaxIntensidad());
     
     ofstream out(argumentos[1], ios::binary);
-    cout << "BANDERA1\n";
-    out.write(reinterpret_cast<char*>(imagen.getXTamano()), sizeof(unsigned short));
-    out.write(reinterpret_cast<char*>(imagen.getYTamano()), sizeof(unsigned short));
-    out.write(reinterpret_cast<char*>(imagen.getMaxIntensidad()), sizeof(unsigned char));
-    for (int i = 0; i <= imagen.getMaxIntensidad(); i++) {
+    out.write(reinterpret_cast<char*>(&xTamano), sizeof(unsigned short));
+    out.write(reinterpret_cast<char*>(&yTamano), sizeof(unsigned short));
+    out.write(reinterpret_cast<char*>(&maxIntensidad), sizeof(unsigned short));
+    /*for (int i = 0; i <= imagen.getMaxIntensidad(); i++) {
         out.write(reinterpret_cast<char*>(&freq[i]), sizeof(unsigned long));
-    }
-    cout << "BANDERA2\n";
+    }*/
     string bitStream;
     for(auto it = imagen.getLista().begin(); it != imagen.getLista().end(); ++it) {
         for (int valor : *it) {
@@ -370,7 +374,7 @@ void codificarImagen(const std::vector<std::string>& argumentos) {
     while (bitStream.size() % 8 != 0) {
         bitStream += "0";
     }
-    cout << "BANDERA3\n";
+
     for (size_t i = 0; i < bitStream.size(); i += 8) {
         bitset<8> byte(bitStream.substr(i, 8));
         unsigned char byteVal = static_cast<unsigned char>(byte.to_ulong());
@@ -399,10 +403,10 @@ void decodificarArchivo(const std::vector<std::string>& argumentos) {
     in.read(reinterpret_cast<char*>(&yTamano), sizeof(unsigned short));
     in.read(reinterpret_cast<char*>(&maxIntensidad), sizeof(unsigned char));
     
-    vector<unsigned long> freq(256, 0);
+    /*vector<unsigned long> freq(256, 0);
     for (int i = 0; i <= maxIntensidad; i++) {
         in.read(reinterpret_cast<char*>(&freq[i]), sizeof(unsigned long));
-    }
+    }*/
     
     HuffmanTree tree(freq);
     HuffmanNode* root = tree.getRoot();
@@ -426,10 +430,10 @@ void decodificarArchivo(const std::vector<std::string>& argumentos) {
         }
     }
     
-    ofstream out(argumentos[2], ios::binary);
+    ofstream out(argumentos[2]);
     out << "P5\n" << xTamano << " " << yTamano << "\n" << (int)maxIntensidad << "\n";
     for (unsigned char pixel : pixels) {
-        out.write(reinterpret_cast<char*>(&pixel), sizeof(unsigned char));
+        out << (int)pixel << " ";
     }
     out.close();    
     std::cout << "El archivo " << argumentos[1] << " ha sido decodificado y almacenado en " << argumentos[2] << ".\n";
