@@ -1,0 +1,2 @@
+Repositorio-> https://github.com/JChappieT/Estructuras-de-Datos00
+El laboratorio se encuentra en la carpeta Talleres -> Laboratorios -> Laboratorio Árbol Rojo Negro
