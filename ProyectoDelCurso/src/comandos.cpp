@@ -17,7 +17,7 @@ bool cargadaI = false;
 Volumen volumen;
 bool cargadaV = false;
 
-vector<unsigned long> freq(256, 0);
+
 
 /*Funcion que veifica si el archivo existe*/
 bool archivoExiste(const std::string& nombreArchivo) {
@@ -340,7 +340,7 @@ void codificarImagen(const std::vector<std::string>& argumentos) {
         return;
     }
     
-    //vector<unsigned long> freq(256, 0);
+    vector<unsigned long> freq(256, 0);
     for (const auto& fila : imagen.getLista()) {
         for (int valor : fila) {
             freq[valor]++;
@@ -348,7 +348,7 @@ void codificarImagen(const std::vector<std::string>& argumentos) {
     }
     HuffmanTree tree(freq);
     map<unsigned char, string> codes = tree.getCodes();
-    vector<unsigned char> pixels(imagen.getXTamano() * imagen.getYTamano());
+    vector<unsigned char> pixels; //(imagen.getXTamano() * imagen.getYTamano());
 
     unsigned short xTamano = static_cast<unsigned short>(imagen.getXTamano());
     unsigned short yTamano = static_cast<unsigned short>(imagen.getYTamano());
@@ -358,9 +358,10 @@ void codificarImagen(const std::vector<std::string>& argumentos) {
     out.write(reinterpret_cast<char*>(&xTamano), sizeof(unsigned short));
     out.write(reinterpret_cast<char*>(&yTamano), sizeof(unsigned short));
     out.write(reinterpret_cast<char*>(&maxIntensidad), sizeof(unsigned short));
-    /*for (int i = 0; i <= imagen.getMaxIntensidad(); i++) {
+    for (int i = 0; i <= imagen.getMaxIntensidad(); i++) {
         out.write(reinterpret_cast<char*>(&freq[i]), sizeof(unsigned long));
-    }*/
+    }
+
     string bitStream;
     for(auto it = imagen.getLista().begin(); it != imagen.getLista().end(); ++it) {
         for (int valor : *it) {
@@ -371,6 +372,9 @@ void codificarImagen(const std::vector<std::string>& argumentos) {
         bitStream += codes[pixel];
     }
     
+    // Contar los bits válidos en el bitStream antes de agregar ceros extra
+    size_t numBitsValidos = bitStream.size();
+
     while (bitStream.size() % 8 != 0) {
         bitStream += "0";
     }
@@ -380,6 +384,9 @@ void codificarImagen(const std::vector<std::string>& argumentos) {
         unsigned char byteVal = static_cast<unsigned char>(byte.to_ulong());
         out.write(reinterpret_cast<char*>(&byteVal), sizeof(unsigned char));
     }
+
+    // Guardar el número de bits válidos al final del archivo
+    out.write(reinterpret_cast<char*>(&numBitsValidos), sizeof(size_t));
     
     out.close();
     std::cout << "La imagen ha sido codificada y almacenada en " << argumentos[1] << ".\n";
@@ -398,26 +405,60 @@ void decodificarArchivo(const std::vector<std::string>& argumentos) {
     }
     
     unsigned short xTamano, yTamano;
-    unsigned char maxIntensidad;
+    unsigned short maxIntensidad;
     in.read(reinterpret_cast<char*>(&xTamano), sizeof(unsigned short));
     in.read(reinterpret_cast<char*>(&yTamano), sizeof(unsigned short));
     in.read(reinterpret_cast<char*>(&maxIntensidad), sizeof(unsigned char));
     
-    /*vector<unsigned long> freq(256, 0);
+    vector<unsigned long> freq(256, 0);
     for (int i = 0; i <= maxIntensidad; i++) {
         in.read(reinterpret_cast<char*>(&freq[i]), sizeof(unsigned long));
-    }*/
+    }
+
+    bool freqValida = false;
+    for (auto f : freq) {
+        if (f > 0) {
+            freqValida = true;
+            break;
+        }
+    }
+    if (!freqValida) {
+        cerr << "Error: No se pudo reconstruir el árbol de Huffman.\n";
+        return;
+    }
     
     HuffmanTree tree(freq);
     HuffmanNode* root = tree.getRoot();
     HuffmanNode* current = root;
     
     vector<unsigned char> pixels;
+    // Leer todos los bytes del archivo
+    vector<unsigned char> bytes;
     char byte;
-    string bitStream;
     while (in.read(&byte, sizeof(char))) {
-        bitStream += bitset<8>(byte).to_string();
+        bytes.push_back(static_cast<unsigned char>(byte));
     }
+
+    // Leer el número de bits válidos que fue guardado al final
+    size_t numBitsValidos;
+    if (bytes.size() < sizeof(size_t)) {
+        cerr << "Error: Archivo corrupto o incompleto.\n";
+        return;
+    }
+    memcpy(&numBitsValidos, &bytes[bytes.size() - sizeof(size_t)], sizeof(size_t));
+    bytes.resize(bytes.size() - sizeof(size_t));
+
+    // Eliminar los bytes usados para guardar `numBitsValidos`
+    bytes.resize(bytes.size() - sizeof(size_t));
+
+    // Convertir bytes a un string binario
+    string bitStream;
+    for (unsigned char b : bytes) {
+        bitStream += bitset<8>(b).to_string();
+    }
+
+    // Recortar el bitStream para que tenga solo los bits válidos
+    bitStream = bitStream.substr(0, numBitsValidos);
     in.close();
     
     for (char bit : bitStream) {
@@ -431,7 +472,7 @@ void decodificarArchivo(const std::vector<std::string>& argumentos) {
     }
     
     ofstream out(argumentos[2]);
-    out << "P5\n" << xTamano << " " << yTamano << "\n" << (int)maxIntensidad << "\n";
+    out << "P3\n" << xTamano << " " << yTamano << "\n" << (int)maxIntensidad << "\n";
     for (unsigned char pixel : pixels) {
         out << (int)pixel << " ";
     }
