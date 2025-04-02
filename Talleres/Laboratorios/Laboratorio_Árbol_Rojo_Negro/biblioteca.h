@@ -1,9 +1,13 @@
 #ifndef _BIBLIOTECA_H_
 #define _BIBLIOTECA_H_
-/** C++ implementation for Red-Black Tree Insertion
-http://quiz.geeksforgeeks.org/c-program-red-black-tree-insertion/
-   This code is adopted from the code provided by
-   Dinesh Khandelwal in comments **/
+/********************************************************
+ Fecha: 2 de Abril de 2025
+ Autores:Jeronimo Chaparro Tenorio.
+ Materia: Estructura de Datos.
+ Tema: LBORATORIO ÁRBOL ROJO NEGRO
+ Pontificia Universidad Javeriana
+ Archivo: biblioteca.h
+ ********************************************************/
    #include <bits/stdc++.h>
 
    using namespace std;

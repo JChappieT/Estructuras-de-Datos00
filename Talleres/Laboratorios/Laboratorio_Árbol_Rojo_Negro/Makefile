@@ -2,12 +2,12 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++11
 
 # Archivos fuente y de encabezado
-SRC = biblioteca.cpp redBlack.cpp
+SRC = biblioteca.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 DEPS = biblioteca.h
 
 # Nombre del ejecutable
-TARGET = redBlack
+TARGET = main
 
 all: $(TARGET)
 
